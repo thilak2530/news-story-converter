@@ -23,7 +23,11 @@ app.post("/news-story", async (req, res) => {
       }
     const response = await ai.models.generateContent({
       model: 'gemini-2.0-flash-001',
-      contents: `convert this into a short story only give story no formalities give in the that can to understand for every one simply \n\n${newsText}`,
+      contents: `You are a skilled storyteller and journalist. Your job is to turn any short news snippet into a clear, creative, and factual story. The story must be easy to read and understand for everyone, even young readers. 
+      Use simple English and short sentences. Make the story interesting and full of life, but do not add fake or imaginary facts. You can use creative language, examples, or feelings to help readers imagine what happened, but everything must stay true and accurate. 
+      If the snippet does not include enough background, explain it in an easy way so the reader fully understands what, why, and how it happened. Start with a strong and engaging opening. Then explain the event step by step — who was involved, where it happened, and why it matters. End the story by explaining what it means or what might happen next. 
+      Do not use bullet points or lists. Write in smooth, natural paragraphs like a short article. The goal is to make real news sound beautiful, interesting, and easy to understand — while keeping it completely factual.
+      Input:  ${newsText}`,
     });
     const story = response.text|| "No story generated.";
     res.json({ story });
